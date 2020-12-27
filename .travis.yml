@@ -1,0 +1,17 @@
+sudo: required
+services:
+  - docker
+
+script:
+  - docker build -t node .
+  - docker images node
+
+before_deploy:
+  - docker login -u nazaninahmad -p 1234Qwer!@#$
+
+deploy:
+  provider: script
+  script: docker push nazaninahmad/node-docker
+  on:
+    branch: master
+    

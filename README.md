@@ -91,5 +91,24 @@ Now if you check [localhost:4000](http://localhost:4000/) you will see that the 
 
 To stop the containers you can use:
 ```bash
-docker stop
+docker-compose stop
 ```
+
+# Add Travis
+To have CICD(Continuous Integration and Continiuous Deployment) we need to do these steps:
+  1- Develop functions
+  2- Commit changed to repo
+  3- CI provider test the build (here travis)
+  4- Deploy
+
+To make it happen we need to change our Dockerfile and add these lines:
+  - RUN mkdir /usr/src/app
+  - ENV PATH /usr/src/app/node_modules/.bin:$PATH
+  - Change the COPY . . to COPY . /usr/src/app
+  - Change the COPY package*.json . to COPY package*.json /usr/src/app
+
+Then we need to add .travis.yml file and add the service and script config to it
+
+Now we need to setup travis [travis-ci](https://travis-ci.org/) and sign up, you will see all the repositories on your github and you can turn on travis for the specific repo (I did it for docker-simple-backend) and in Dashboard you can "trigger build"
+
+
