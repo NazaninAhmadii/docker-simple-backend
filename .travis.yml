@@ -3,8 +3,8 @@ services:
   - docker
 
 script:
-  - docker build -t node .
-  - docker images node
+  - docker build -t nodedocker .
+  - docker images nodedocker
 
 before_deploy:
   - docker login -u nazaninahmad -p 1234Qwer!@#$
@@ -14,4 +14,3 @@ deploy:
   script: docker push nazaninahmad/node-docker
   on:
     branch: master
-    
